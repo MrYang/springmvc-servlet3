@@ -1,6 +1,7 @@
 package com.zz.springservlet3.config;
 
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
@@ -14,7 +15,7 @@ public class SpringWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebMvcConfig.class};
+        return new Class[]{WebMvcConfig.class, GlobalExceptionHandler.class};
     }
 
     @Override
@@ -24,6 +25,9 @@ public class SpringWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 
     @Override
     protected Filter[] getServletFilters() {
-        return new Filter[]{new OpenEntityManagerInViewFilter()};
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+        return new Filter[]{characterEncodingFilter, new OpenEntityManagerInViewFilter()};
     }
 }
