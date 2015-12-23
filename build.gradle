@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 group 'com.zz'
 version '1.0'
 
@@ -15,6 +17,36 @@ repositories {
 
 ext {
     springVersion = "4.2.3.RELEASE"
+    if (project.hasProperty("profile")) {
+        profile = project.properties["profile"];
+    } else {
+        profile = "dev";
+    }
+    env = "abc"
+}
+
+processResources {
+    println "processResouces"
+
+    include "application.properties"
+    include "logback.xml"
+    include "logback/logback-${profile}.xml"
+    // 可以用一下三种方式中的任意一种
+//    filesMatching('**/*.*') {
+//        filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [
+//                "profile": project.property('profile')
+//        ]
+//    }
+
+//    from('src/main/resources') {
+//        include '*.*'
+//        filter(org.apache.tools.ant.filters.ReplaceTokens, tokens: ["profile": project.property('profile')])
+//    }
+
+    filter ReplaceTokens, tokens: [
+            "profile": project.property('profile'),
+            "env"    : project.property("env")
+    ]
 }
 
 dependencies {
@@ -50,6 +82,3 @@ dependencies {
     testCompile "org.springframework:spring-test:${springVersion}"
 }
 
-test {
-    systemProperties "property": "value"
-}
