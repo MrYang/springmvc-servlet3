@@ -18,4 +18,8 @@ public class UserService {
     public List<User> findAll() {
         return userDao.findAll();
     }
+
+    public User getOne(Long id) {
+        return userDao.findOne(id);
+    }
 }

@@ -1,4 +1,4 @@
-package com.zz.springservlet3.config;
+package com.zz.springservlet3.config.web;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -7,7 +7,6 @@ import org.springframework.context.annotation.*;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RestController;
 
 @Configuration
@@ -16,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableScheduling
 @EnableAspectJAutoProxy
 @EnableCaching
-@EnableTransactionManagement
-@Import({RedisConfig.class, PersistenceConfig.class})
+@Import({ServiceConfig.class})
 public class AppConfig {
 
     @Bean
