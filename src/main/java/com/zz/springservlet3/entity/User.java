@@ -1,6 +1,7 @@
 package com.zz.springservlet3.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.wordnik.swagger.annotations.ApiModel;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+@ApiModel(value = "user", description = "用户")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 3593940709256833286L;
