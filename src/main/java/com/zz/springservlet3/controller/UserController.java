@@ -14,8 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/user", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-@Api(value = "/user", basePath = "/", description = "用户操作",
-        produces = "application/json; charset=utf-8", hidden = true)
+@Api(value = "/user", basePath = "/", description = "用户操作", produces = "application/json; charset=utf-8", hidden = true)
 public class UserController {
 
     @Autowired
@@ -24,6 +23,13 @@ public class UserController {
     @RequestMapping
     @ApiOperation(value = "获取所有用户", httpMethod = "GET", response = User.class, responseContainer = "Array", notes = "获取所有用户详情")
     public List<User> list() {
+        return userService.findAll();
+    }
+
+    @RequestMapping("query")
+    @ApiOperation(value = "查询", response = User.class, responseContainer = "Array", notes = "查询用户")
+    public List<User> query(User user) {
+        System.out.println(user.getUsername());
         return userService.findAll();
     }
 

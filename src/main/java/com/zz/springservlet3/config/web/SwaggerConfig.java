@@ -27,10 +27,10 @@ public class SwaggerConfig {
         ApiInfo apiInfo = new ApiInfo(
                 "Spring MVC Swagger",
                 "Spring MVC Swagger简单示例",
-                "paul.wide",
-                "paul.wide@gmail.com",
-                "MIT License",
-                "/LICENSE");
+                null,
+                null,
+                null,
+                null);
         return apiInfo;
     }
 }
